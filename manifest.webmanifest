@@ -1,17 +1,22 @@
 {
-  "name": "FitnessCut — برنامه کات و PPL",
+  "name": "FitnessCut | تغذیه و تمرین",
   "short_name": "FitnessCut",
-  "description": "اپ فارسی برای کات، تمرین Push Pull Legs، تغذیه و پایش پیشرفت",
   "lang": "fa",
   "dir": "rtl",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#f7f8fa",
-  "theme_color": "#10b981",
+  "background_color": "#F8FAF9",
+  "theme_color": "#064E3B",
   "icons": [
-    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ]
 }
