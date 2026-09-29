@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#10b981" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="FitnessCut" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>FitnessCut — برنامه کات و PPL</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="sidebar" aria-label="ناوبری اصلی">
+      <div class="brand"><div class="brand-mark">F</div><div><strong>FitnessCut</strong><span>Cut • PPL • Progress</span></div></div>
+      <nav id="desktopNav"></nav>
+      <div class="sidebar-foot"><span class="status-dot"></span><div><strong>Local-first PWA</strong><span>اطلاعات روی دستگاه شما ذخیره می‌شود</span></div></div>
+    </aside>
+
+    <main class="app-main">
+      <header class="topbar">
+        <div class="mobile-brand"><div class="brand-mark small-mark">F</div><strong>FitnessCut</strong></div>
+        <div id="todayLabel" class="topbar-date"></div>
+        <div class="topbar-actions">
+          <button id="installBtn" class="icon-button" title="نصب اپ" aria-label="نصب اپ">＋</button>
+          <button class="avatar" data-route="settings" aria-label="تنظیمات">22</button>
+        </div>
+      </header>
+
+      <div id="content" class="content" aria-live="polite"></div>
+    </main>
+
+    <nav id="bottomNav" class="bottom-nav" aria-label="ناوبری موبایل"></nav>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+  <div id="modalRoot"></div>
+  <script src="app.js"></script>
+</body>
+</html>
