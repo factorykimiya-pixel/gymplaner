@@ -1,0 +1,51 @@
+const CACHE='fitnesscut-static-v4';
+const PRECACHE=[
+  './',
+  'index.html',
+  'css/app.css',
+  'js/default-data.js',
+  'js/utils.js',
+  'js/icons.js',
+  'js/state.js',
+  'js/app.js',
+  'manifest.webmanifest',
+  'assets/hero-athlete.jpg',
+  'assets/legs-calf-raise.jpg',
+  'assets/legs-hack-squat.jpg',
+  'assets/legs-leg-curl.jpg',
+  'assets/legs-leg-extension.jpg',
+  'assets/legs-leg-press.jpg',
+  'assets/legs-rdl.jpg',
+  'assets/meal-breakfast.jpg',
+  'assets/meal-dinner.jpg',
+  'assets/meal-lunch.jpg',
+  'assets/meal-preworkout.jpg',
+  'assets/meal-snack.jpg',
+  'assets/pull-chest-row.jpg',
+  'assets/pull-hammer-curl.svg',
+  'assets/pull-incline-curl.jpg',
+  'assets/pull-lat-pulldown.jpg',
+  'assets/pull-reverse-fly.jpg',
+  'assets/pull-single-lat.jpg',
+  'assets/push-cable-fly.jpg',
+  'assets/push-incline-press.jpg',
+  'assets/push-lateral-raise.jpg',
+  'assets/push-machine-press.jpg',
+  'assets/push-overhead-triceps.jpg',
+  'assets/push-pushdown.jpg',
+  'assets/supp-bcaa.jpg',
+  'assets/supp-creatine.jpg',
+  'assets/supp-glutamine.jpg',
+  'assets/supp-whey.jpg',
+  'icons/apple-touch-icon.png',
+  'icons/icon-192.png',
+  'icons/icon-512.png'
+];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRECACHE)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{
+  if(e.request.method!=='GET')return;
+  const url=new URL(e.request.url);
+  if(url.origin!==location.origin)return;
+  e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).then(res=>{const copy=res.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return res;}).catch(()=>caches.match('index.html'))));
+});

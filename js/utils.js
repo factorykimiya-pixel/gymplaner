@@ -1,0 +1,23 @@
+(function(){
+  const U={};
+  U.clone=x=>JSON.parse(JSON.stringify(x));
+  U.round1=n=>Math.round(Number(n||0)*10)/10;
+  U.clamp=(n,min,max)=>Math.min(max,Math.max(min,n));
+  U.pct=(v,t)=>t<=0?0:U.clamp((v/t)*100,0,100);
+  U.fa=(n,d=0)=>new Intl.NumberFormat('fa-IR',{maximumFractionDigits:d}).format(Number(n||0));
+  U.today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+  U.sumFoods=foods=>(foods||[]).reduce((a,f)=>({calories:a.calories+(+f.macros.calories||0),protein:a.protein+(+f.macros.protein||0),carbs:a.carbs+(+f.macros.carbs||0),fat:a.fat+(+f.macros.fat||0)}),{calories:0,protein:0,carbs:0,fat:0});
+  U.mealMacros=meal=>U.sumFoods(meal.foods||[]);
+  U.dailyMacros=meals=>(meals||[]).reduce((a,m)=>{const x=U.mealMacros(m);return {calories:a.calories+x.calories,protein:a.protein+x.protein,carbs:a.carbs+x.carbs,fat:a.fat+x.fat}},{calories:0,protein:0,carbs:0,fat:0});
+  U.scaleFood=(food,grams)=>{grams=Math.max(0,Number(grams)||0);const old=Math.max(.0001,Number(food.grams)||1);const r=grams/old;return {...food,grams,macros:{calories:U.round1(food.macros.calories*r),protein:U.round1(food.macros.protein*r),carbs:U.round1(food.macros.carbs*r),fat:U.round1(food.macros.fat*r)}}};
+  U.movingAverage7=entries=>{if(!entries?.length)return 0;const a=[...entries].sort((x,y)=>x.date.localeCompare(y.date)).slice(-7);return U.round1(a.reduce((s,x)=>s+(+x.weightKg||0),0)/a.length)};
+  U.weightProgress=(start,current,target)=>{const total=Math.max(.1,start-target);return U.clamp(((start-current)/total)*100,0,100)};
+  U.suggestedWorkout=()=>{const d=new Date().getDay();if(d===6)return'push';if(d===1)return'pull';if(d===3)return'legs';const arr=[{d:6,id:'push'},{d:1,id:'pull'},{d:3,id:'legs'}].map(x=>({...x,delta:(x.d-d+7)%7||7})).sort((a,b)=>a.delta-b.delta);return arr[0].id};
+  U.downloadJson=(name,data)=>{const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),500)};
+  U.escape=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  U.id=(p='id')=>`${p}-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+  U.route=()=>location.hash.replace(/^#/,'')||'/';
+  U.go=path=>{location.hash=path.startsWith('/')?path:`/${path}`};
+  U.time=s=>`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+  window.FCU=U;
+})();

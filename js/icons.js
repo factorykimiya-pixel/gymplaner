@@ -1,0 +1,35 @@
+(function(){
+  const paths={
+    home:'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M9 20v-6h6v6"/>',
+    dumbbell:'<path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/>',
+    food:'<path d="M7 3v7M4 3v4a3 3 0 0 0 6 0V3M7 10v11M16 3v18M16 3c3 1 4 4 4 7h-4"/>',
+    chart:'<path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/>',
+    settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.07.07-2.83 2.83-.07-.07a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.66V21H9.83v-.1a1.8 1.8 0 0 0-1.1-1.66 1.8 1.8 0 0 0-2 .36l-.07.07-2.83-2.83.07-.07a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 2.6 13.7H2.5V9.7h.1a1.8 1.8 0 0 0 1.66-1.1 1.8 1.8 0 0 0-.36-2l-.07-.07L6.66 3.7l.07.07a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 9.83 2.5V2.4h4v.1a1.8 1.8 0 0 0 1.1 1.66 1.8 1.8 0 0 0 2-.36l.07-.07 2.83 2.83-.07.07a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.66 1.1h.1v4h-.1A1.8 1.8 0 0 0 19.4 15Z"/>',
+    edit:'<path d="M12 20h9"/><path d="m16.5 3.5 4 4L8 20l-5 1 1-5Z"/>',
+    moon:'<path d="M20 15.5A8 8 0 0 1 8.5 4a8.3 8.3 0 1 0 11.5 11.5Z"/>',
+    sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>',
+    fire:'<path d="M12 22c4 0 7-3 7-7 0-5-4-8-6-11 0 4-3 6-3 9-1-2-2-3-3-5-1 2-2 4-2 7 0 4 3 7 7 7Z"/>',
+    target:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+    steps:'<path d="M7 3c1 0 2 2 2 4s-1 4-2 4-2-2-2-4 1-4 2-4ZM16 13c1 0 2 2 2 4s-1 4-2 4-2-2-2-4 1-4 2-4Z"/>',
+    water:'<path d="M12 3s6 6 6 11a6 6 0 1 1-12 0c0-5 6-11 6-11Z"/>',
+    play:'<path d="m8 5 11 7-11 7Z"/>',
+    check:'<path d="m5 12 4 4L19 6"/>',
+    plus:'<path d="M12 5v14M5 12h14"/>',
+    trash:'<path d="M4 7h16M9 7V4h6v3M7 7l1 14h8l1-14M10 11v6M14 11v6"/>',
+    copy:'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
+    timer:'<circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/>',
+    close:'<path d="m6 6 12 12M18 6 6 18"/>',
+    pause:'<path d="M9 5v14M15 5v14"/>',
+    download:'<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+    upload:'<path d="M12 21V9M7 14l5-5 5 5M5 3h14"/>',
+    print:'<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v7H6Z"/>',
+    reset:'<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>',
+    info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',
+    supplement:'<path d="M9 3h6M10 3v4l-4 6a5 5 0 0 0 4 8h4a5 5 0 0 0 4-8l-4-6V3M8 13h8"/>',
+    chevron:'<path d="m9 18 6-6-6-6"/>',
+    menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+    bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+    save:'<path d="M5 3h12l2 2v16H5Z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>'
+  };
+  window.FCIcon=(name,size=20,cls='')=>`<svg class="fc-icon ${cls}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.info}</svg>`;
+})();

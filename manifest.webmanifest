@@ -1,0 +1,17 @@
+{
+  "name": "FitnessCut",
+  "short_name": "FitnessCut",
+  "description": "برنامه شخصی کات، تمرین PPL، تغذیه و پیشرفت",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F6FAF8",
+  "theme_color": "#007F5F",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "fa",
+  "icons": [
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}
+  ]
+}
